@@ -1,0 +1,15 @@
+.status-updater button {
+    font-size: 40px;
+    width: 60px;
+    height: 60px;
+    margin: 0 20px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.status-updater button:focus {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}

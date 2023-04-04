@@ -1,0 +1,23 @@
+.status-display {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.bar {
+    display: flex;
+    height: 60px;
+    border: 1px solid #000;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.green {
+    background-color: green;
+}
