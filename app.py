@@ -1,9 +1,9 @@
 import time
 import os
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
-app = Flask(__name__, static_folder='./build', static_url_path='/')
+app = Flask(__name__, static_folder='./frontend/public', static_url_path='/')
 
 CORS(app)
 
