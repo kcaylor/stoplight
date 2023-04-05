@@ -5,16 +5,23 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+max_updates = 45*10  # 45 updates per minute, 10 minutes
 
 # Store student status updates
 status_updates = []
 
 @app.route('/api/status', methods=['POST'])
 def post_status():
+    global status_updates
     status = request.json.get('status')
     timestamp = time.time()
     status_updates.append({'status': status, 'timestamp': timestamp})
-    return jsonify({'message': 'Status update received'})
+    if len(status_updates) > max_updates:
+        # If there are more than 450 status updates, remove the oldest ones
+        status_updates = status_updates[-max_updates:]
+        return jsonify({'message': 'Too many updates in past 10 minutes'})
+    else:
+        return jsonify({'message': 'Status update received'})
 
 
 @app.route('/api/status_summary', methods=['GET'])
