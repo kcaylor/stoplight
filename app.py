@@ -1,12 +1,31 @@
 import time
 import os
+import logging
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import redis
+import threading
+
 
 # Set up the app
 app = Flask(__name__, static_folder='./frontend/build/',    static_url_path='/')
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Function to remove outdated status updates
+def clean_status_updates():
+    twenty_minutes_ago = time.time() - (20 * 60)
+    for status in ['red', 'yellow', 'green']:
+        num_removed = redis_store.zremrangebyscore(f'status_updates:{status}', '-inf', twenty_minutes_ago)
+        if num_removed > 0:
+            logger.info(f"Removed {num_removed} outdated '{status}' status updates")
+
+    # Schedule the function to run again after 60 seconds
+    threading.Timer(60, clean_status_updates).start()
+
+# Start the scheduled task
+clean_status_updates()
 
 CORS(app)
 
