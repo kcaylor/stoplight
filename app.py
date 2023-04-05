@@ -1,14 +1,20 @@
 import time
+import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./build', static_url_path='/')
+
 CORS(app)
 
 max_updates = 45*10  # 45 updates per minute, 10 minutes
 
 # Store student status updates
 status_updates = []
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 @app.route('/api/status', methods=['POST'])
 def post_status():
@@ -43,4 +49,4 @@ def get_status_summary():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='localhost', port=5000)
+    app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
