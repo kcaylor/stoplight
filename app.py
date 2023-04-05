@@ -3,7 +3,8 @@ import os
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
-app = Flask(__name__, static_folder='frontend/build', static_url_path='')
+# Set up the app
+app = Flask(__name__, static_folder='../frontend/build/',    static_url_path='/')
 
 CORS(app)
 
@@ -13,10 +14,9 @@ max_updates = 45*10  # 45 updates per minute, 10 minutes
 status_updates = []
 
 # Serve React app static files
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def catch_all(path):
-    return send_from_directory('frontend/build', 'index.html')
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 @app.route('/api/status', methods=['POST'])
 def post_status():
