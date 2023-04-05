@@ -34,6 +34,7 @@ def post_status():
 
 @app.route('/api/status_summary', methods=['GET'])
 def get_status_summary():
+    global status_updates
     cutoff_time = time.time() - 600  # 10 minutes ago
     recent_updates = [update for update in status_updates if update['timestamp'] >= cutoff_time]
 
