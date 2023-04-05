@@ -13,6 +13,11 @@ app = Flask(__name__, static_folder='./frontend/build/',    static_url_path='/')
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
+# Configure Redis connection
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
+redis_store = redis.StrictRedis.from_url(REDIS_URL, decode_responses=True)
+
 # Function to remove outdated status updates
 def clean_status_updates():
     twenty_minutes_ago = time.time() - (20 * 60)
@@ -30,13 +35,6 @@ clean_status_updates()
 CORS(app)
 
 max_updates = 45*10  # 45 updates per minute, 10 minutes
-
-# Configure Redis connection
-REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
-redis_store = redis.StrictRedis.from_url(REDIS_URL, decode_responses=True)
-
-# Store student status updates
-status_updates = []
 
 # Serve React app static files
 @app.route('/')
