@@ -10,7 +10,7 @@ This app serves a simple purpose: to keep track of student pace during a lecture
 
 Students use the icons on the page to indicate whether they are following along with the speed of the lecture.
 
-The app keeps track of the numbers of students reporting in each category in a rolling 10-minute window and builds the visualization at the top of the page accordingly.
+Reponses are stored in a [Redis](https://redis.io) key-value database. The app uses the Redis store to keep track of the numbers of students reporting in each category in a rolling 10-minute window and updates the visualization at the top of the page accordingly.
 
 ### Things are going well
 
