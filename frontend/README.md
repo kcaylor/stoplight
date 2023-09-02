@@ -1,6 +1,33 @@
-# Getting Started with Create React App
+# Stoplight 
+
+A simple flask + react app to keep track of student pace during a lecture.
+
+![stoplight initial](./assets/Stoplight_Initial.png)
+
+## General Info
+
+This app serves a simple purpose: to keep track of student pace during a lecture. It is meant to be used by the instructor to get a sense of how the class is doing. The instructor can then adjust the pace of the lecture accordingly. 
+
+Students use the icons on the page to indicate whether they are following along with the speed of the lecture.
+
+The app keeps track of the numbers of students reporting in each category in a rolling 10-minute window and builds the visualization at the top of the page accordingly.
+
+### Things are going well
+
+![stoplight green](./assets/Stoplight_Green.png)
+
+
+### Uh-oh, we're going too fast!
+
+![stoplight yellow](./assets/Stoplight_Yellow.png)
+
+
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
 
 ## Available Scripts
 
