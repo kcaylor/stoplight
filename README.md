@@ -1,6 +1,6 @@
 # Stoplight 
 
-A simple flask + react app to keep track of student pace during a lecture.
+A simple [Flask](https://flask.palletsprojects.com/en/2.3.x/) + [react](https://reactjs.org/) app to keep track of student pace during a lecture.
 
 ![stoplight initial](./assets/Stoplight_Initial.png)
 
